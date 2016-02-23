@@ -1,3 +1,9 @@
+##=========================================================================================
+#
+#           Homework 2 |  Riley Benson | EP 476 | Prof. Paul Wilson
+#
+#==========================================================================================
+#
 # Initializing descriptions of event described in problem statement
 particle_ID = 43
 event_loc = [3,4,5]
@@ -28,19 +34,9 @@ def collision_dist(loc_1,loc_2):
     
     return "The distance between collisions for this is event is " + str(distance)
 
-#    vec = range(j)
-#    for i in range(j):
-#        vec[i] = (loc_2[i] - loc_1[i])
-#
-#    unit_vec = range(len(vec))
-#    for k in range(len(unit_vec)):
-#        unit_vec[k] = float(unit_vec[k])/float(distance)
-#    return "The unit vector for particle 43 is " + str(unit_vec)
-#print(unit_vec)
-
-
-
 print(collision_dist(prev_loc,event_loc))
+
+
 
 #=============================================================================================
 
@@ -66,14 +62,13 @@ def part_unit_vec(location_1,location_2):
 
     magnitude = n.sqrt(n.sum(diff_sqr))
 
-    unit_vector = (len(vector))  #divide(vector,magnitude)
+    unit_vector = range(len(vector))
     for i in range(len(unit_vector)):
         unit_vector[i] = float(vector[i])/float(magnitude)
 
     return unit_vector
 
-print(part_unit_vec(prev_loc,event_loc))
-#print("The unit vector of particle 43 is " + part_unit_vec(prev_loc,event_loc))
+print("The unit vector of particle 43 is " + str(part_unit_vec(prev_loc,event_loc)))
 
 
 #===========================================================================================
