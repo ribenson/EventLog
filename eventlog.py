@@ -79,7 +79,8 @@ def MeV_to_eV(energy):
     eV = energy*10**6
     return eV
 
-print("\nThe energy of particle 43 is " + str(MeV_to_eV(part_energy)) + " eV")
+part43_energy = MeV_to_eV(part_energy)
+print("\nThe energy of particle 43 is " + str(part43_energy) + " eV")
 
 
 #==============================================================================================
@@ -114,24 +115,58 @@ print("\nThe energy of particle 43 is " + str(MeV_to_eV(part_energy)) + " eV")
 #
 # Function to store three copies of described event in above described structure
 
-def three_copies(part_number, event_pos, part_direc, type_atom, type_rxn):
+def three_copies(part_number, event_pos, part_direc, type_atom, type_rxn, particle_energy):
 
-    events_log = {1:0, 2:0, 3:0}
+    events_log = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0}
 
-    for l in [1,2,3]:
-        events_log.update({l:{"particle number":part_number, "event position":event_pos, "particle direction":part_direc, "atom type":type_atom, "rxn number":type_rxn}})
+    for l in [1,2,3,4,5,6,7,8,9]:
+        events_log.update({l:{"particle number":part_number,"particle energy":particle_energy, "event position":event_pos, "particle direction":part_direc, "atom type":type_atom, "rxn number":type_rxn}})
     
     # This returns just the dictionary of the last "event" to show the loop worked
-    return events_log[2]
+    return events_log
+
+events_log = three_copies(particle_ID, event_loc, unit_vec, atom_type, rxn_type, part43_energy)
 
 # Printing the whole dictionary is very cumbersome and hard to read so just the third event is printed
-print("\nThe dictionary of event 3 is " + str(three_copies(particle_ID, event_loc, unit_vec, atom_type, rxn_type)))
+print("\nThe dictionary of event 3 is " + str(events_log[2]))
 
 
-
-
-
-#
 #===============================================================================================
+
+# iv. 
+
+# a. This is a function and accompanying code to determine change in energy between 5th and 6th event
+#
+# An assumption is made that the expectation is not to create arbitrary events to analyze. This code 
+# will reference the 5th and 6th events in above events_log. This then applies for the following b, 
+# and c where they will refer to events in the log above. As a result of all the events being the same,
+# all of the values should be zero. This will be the confirmation that the code is working. 
+#
+#
+
+def energy_change(rxn_log):
+    
+    energy_change = (rxn_log[6]["particle energy"] - rxn_log[5]["particle energy"])
+    
+    return energy_change
+
+
+energy_chng = energy_change(events_log)
+
+print("\nThe change in energy between the 5th and 6th event is " + str(energy_chng) + " eV")
+
+
+#=================================================================================================
+
+# b. This function and accompanying code will calculate the distance between the 7th and 8th event
+#    It will accomplish this by calling a previous function that calculates distance between two
+#    points.
+
+
+def position_change(rxn_log):
+
+    pos_change = collision_dist(rxn_log[7]["event position"], rxn_log[8]["event position"])
+
+    return pos_change
 
 
