@@ -172,3 +172,42 @@ def position_change(rxn_log):
 loc_change = position_change(events_log)
 
 print("\nThe distance between event 7 and event 8 is " + str(loc_change))
+
+
+#==================================================================================================
+
+# c. This function and accompanying code will calculate whether the 4th event was more aligned with
+#    the z-axis than the 9th event. 
+#
+# In order to actually see a value for this event, an update will be made to the direction of event 4
+# so an actual comparison can be made. This is the following code:
+
+unit_vec_4 = part_unit_vec([1,2,3], [6,2,12])
+
+events_log.update({4:{"particle number":particle_ID,"particle energy":part_energy, "event position":event_loc, "particle direction":unit_vec_4, "atom type":atom_type, "rxn number":rxn_type}})
+
+# From here the code will compute which event is more aligned with the z-axis.
+
+
+def direction_z(rxn_log):
+
+    import numpy as n
+    
+    event9_z = 0 # initialize variable
+    event4_z = 0 # initialize variable
+
+    z_axis = [0, 0, 1]
+    event9_z = n.dot(rxn_log[9]["particle direction"], z_axis)  # Finds portion of direction of event 9 in z direction
+    event4_Z = n.dot(rxn_log[4]["particle direction"], z_axis)  # Finds portion of direction of event 4 in z direction
+
+
+# If statement checks to see which event has a larger dot product with the unit vector alont the z-axis
+    if event9_z > event4_z:
+        return ["9th event","4th event"]
+
+    else: 
+        return ["4th event", "9th event"]
+
+z_event = direction_z(events_log)
+
+print("\nThe " + z_event[0] + " was more aligned with the z-axis than the " + z_event[1] + " was.")
