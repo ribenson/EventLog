@@ -169,4 +169,6 @@ def position_change(rxn_log):
 
     return pos_change
 
+loc_change = position_change(events_log)
 
+print("\nThe distance between event 7 and event 8 is " + str(loc_change))
