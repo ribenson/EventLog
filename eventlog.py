@@ -68,7 +68,17 @@ def part_unit_vec(location_1,location_2):
 
     return unit_vector
 
-print("The unit vector of particle 43 is " + str(part_unit_vec(prev_loc,event_loc)))
+print("\nThe unit vector of particle 43 is " + str(part_unit_vec(prev_loc,event_loc)))
+
+#==========================================================================================
+
+# Function to calculate energy of particle in eV from MeV
+
+def MeV_to_eV(energy):
+    eV = energy*10**6
+    return eV
+
+print("\nThe energy of particle 43 is " + str(MeV_to_eV(part_energy)) + " eV")
 
 
 #===========================================================================================
