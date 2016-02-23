@@ -62,13 +62,14 @@ def part_unit_vec(location_1,location_2):
 
     magnitude = n.sqrt(n.sum(diff_sqr))
 
+
     unit_vector = range(len(vector))
     for i in range(len(unit_vector)):
         unit_vector[i] = float(vector[i])/float(magnitude)
 
     return unit_vector
-
-print("\nThe unit vector of particle 43 is " + str(part_unit_vec(prev_loc,event_loc)))
+unit_vec = part_unit_vec(prev_loc,event_loc)
+print("\nThe unit vector of particle 43 is " + str(unit_vec))
 
 #==========================================================================================
 
@@ -81,7 +82,7 @@ def MeV_to_eV(energy):
 print("\nThe energy of particle 43 is " + str(MeV_to_eV(part_energy)) + " eV")
 
 
-#===========================================================================================
+#==============================================================================================
 
 # ii.
 #
@@ -93,7 +94,7 @@ print("\nThe energy of particle 43 is " + str(MeV_to_eV(part_energy)) + " eV")
 # correspond to which physical meaning. 
 #
 #
-#
+#==============================================================================================
 #
 # iii.
 #
@@ -107,9 +108,29 @@ print("\nThe energy of particle 43 is " + str(MeV_to_eV(part_energy)) + " eV")
 # This way, regardless of the order the events are taking place, a label of the event number can be
 # tracked. The label of each entry in log dictionary would correspond to another dictionary containing
 # the information about that event. Using this system, the user/coder can call upon any event in the 
-# dictionary utilizing the label of that event.
+# dictionary utilizing the label of that event. Since I do not know which is the case, I will use 
+# dictionaries in a dictionary. 
 #
 #
+# Function to store three copies of described event in above described structure
+
+def three_copies(part_number, event_pos, part_direc, type_atom, type_rxn):
+
+    events_log = {1:0, 2:0, 3:0}
+
+    for l in [1,2,3]:
+        events_log.update({l:{"particle number":part_number, "event position":event_pos, "particle direction":part_direc, "atom type":type_atom, "rxn number":type_rxn}})
+    
+    # This returns just the dictionary of the last "event" to show the loop worked
+    return events_log[2]
+
+# Printing the whole dictionary is very cumbersome and hard to read so just the third event is printed
+print("\nThe dictionary of event 3 is " + str(three_copies(particle_ID, event_loc, unit_vec, atom_type, rxn_type)))
+
+
+
+
+
 #
 #===============================================================================================
 
