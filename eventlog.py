@@ -28,9 +28,10 @@ def collision_dist(loc_1,loc_2):
     j = len(loc_1)
     diff_sq = n.zeros(j)
     for i in range(j):
-        diff_sq[i] = (loc_2[i] - loc_1[i])**2
+        diff_sq[i] = (loc_2[i] - loc_1[i])**2  # square of the difference x,y,z cordinates 
 
-    distance = n.sqrt(n.sum(diff_sq))
+    distance = n.sqrt(n.sum(diff_sq)) # square root of the sum of the differences is the 
+                                      # distance forumula
     
     return "The distance between collisions for this is event is " + str(distance)
 
@@ -55,16 +56,16 @@ def part_unit_vec(location_1,location_2):
     j = len(location_1)
     diff_sqr = range(j)
     vector = range(j)
-
+#  Loop through locations and make direction vector
     for i in range(j):
         vector[i] = (location_2[i] - location_1[i])
         diff_sqr[i] = vector[i]**2
 
-    magnitude = n.sqrt(n.sum(diff_sqr))
+    magnitude = n.sqrt(n.sum(diff_sqr)) # distance formula
 
 
-    unit_vector = range(len(vector))
-    for i in range(len(unit_vector)):
+    unit_vector = range(len(vector)) # initialize unit vector variable
+    for i in range(len(unit_vector)): # loop thru vector and divide each value by the magnitude
         unit_vector[i] = float(vector[i])/float(magnitude)
 
     return unit_vector
@@ -117,12 +118,12 @@ print("\nThe energy of particle 43 is " + str(part43_energy) + " eV")
 
 def three_copies(part_number, event_pos, part_direc, type_atom, type_rxn, particle_energy):
 
-    events_log = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0}
+    events_log = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0} # initialize events log dictionary
 
-    for l in [1,2,3,4,5,6,7,8,9]:
+    for l in [1,2,3,4,5,6,7,8,9]: # loop thru dict and update each key
         events_log.update({l:{"particle number":part_number,"particle energy":particle_energy, "event position":event_pos, "particle direction":part_direc, "atom type":type_atom, "rxn number":type_rxn}})
     
-    # This returns just the dictionary of the last "event" to show the loop worked
+    # This returns the whole dict
     return events_log
 
 events_log = three_copies(particle_ID, event_loc, unit_vec, atom_type, rxn_type, part43_energy)
@@ -164,7 +165,7 @@ print("\nThe change in energy between the 5th and 6th event is " + str(energy_ch
 
 
 def position_change(rxn_log):
-
+    # call collision dist function for events 7 and 8
     pos_change = collision_dist(rxn_log[7]["event position"], rxn_log[8]["event position"])
 
     return pos_change
@@ -182,8 +183,10 @@ print("\nThe distance between event 7 and event 8 is " + str(loc_change))
 # In order to actually see a value for this event, an update will be made to the direction of event 4
 # so an actual comparison can be made. This is the following code:
 
-unit_vec_4 = part_unit_vec([1,2,3], [6,2,12])
 
+unit_vec_4 = part_unit_vec([1,2,3], [6,2,12]) # create arbitrary unit vector for event 4
+
+# Update event 4 in the events_log 
 events_log.update({4:{"particle number":particle_ID,"particle energy":part_energy, "event position":event_loc, "particle direction":unit_vec_4, "atom type":atom_type, "rxn number":rxn_type}})
 
 # From here the code will compute which event is more aligned with the z-axis.
