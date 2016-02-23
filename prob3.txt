@@ -1,0 +1,34 @@
+#========================================================================
+
+       Riley Benson | Homework 2 | EP 476 | Prof. Paul Wilson|
+
+                                Problem 3 
+
+#========================================================================
+
+ ii.
+
+I think the best way for storing all the information about an event would be a dictionary.
+The dictionary would allow the coder to label all of the values that are listed in the dictionary.
+
+Comparatively, a list could work if the user knew what values corresponded to what physical meaning.
+Same goes for a tuple. A set wouldn't make any sense as there would be no way to know which values
+correspond to which physical meaning. 
+
+
+
+iii.
+
+I think the best way to store many events together in a 'log' would be in a list, if you could count
+on the fact that the physical events would happen chronologically, as in event 1 happened first, event
+2 happened second, etc. If this were the case, then the location of the dictionary in the list could 
+used as the event number identifier and each location would hold a dictionary containing all the 
+pertinent information. 
+
+If this were not the case, then I think the best container for this log would be another dictionary.
+This way, regardless of the order the events are taking place, a label of the event number can be
+tracked. The label of each entry in log dictionary would correspond to another dictionary containing
+the information about that event. Using this system, the user/coder can call upon any event in the 
+dictionary utilizing the label of that event. Since I do not know which is the case, I will use 
+dictionaries in a dictionary. 
+
